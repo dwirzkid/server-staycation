@@ -6,6 +6,7 @@ var logger = require('morgan');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
+const cors = require('cors');
 // import mongoose
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://morf:rahasia@cluster0.7zhj7nt.mongodb.net/db_staycation?retryWrites=true&w=majority', {
@@ -41,11 +42,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/sb-admin-2', express.static(path.join(__dirname, 'node_modules/startbootstrap-sb-admin-2')));
 
+app.use(cors());
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 // admin
 app.use('/admin', adminRouter);
 app.use('/api/v1/member', apiRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
