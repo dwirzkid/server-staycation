@@ -120,6 +120,7 @@ module.exports = {
             accountHolder,
             bankFrom,            
         } = req.body;
+        
         if(!req.file) {
             return res.status(404).json({ message: "Image not found" });
         }
